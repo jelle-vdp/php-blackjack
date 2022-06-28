@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,800;1,100;1,200;1,400;1,500;1,600;1,700;1,800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #BFD7EA;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main {
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  main {
+    max-width: calc(3rem + 800px);
+    margin: 4rem auto;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    margin: 20px;
+    max-width: calc(100vw - 40px);
+  }
+}
+
+main h1 {
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+main .blackjack-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #0B3954;
+  color: #BFD7EA;
+  padding: 3rem;
+  margin-bottom: 2rem;
+}
+
+main .blackjack-wrapper .player {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: calc(50% - 1rem);
+}
+
+main .blackjack-wrapper .player h2 {
+  margin-bottom: 1rem;
+}
+
+main .blackjack-wrapper .player .player-score__description {
+  margin-bottom: 0.4rem;
+}
+
+main .blackjack-wrapper .player .player-score__output {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+main .blackjack-wrapper .player .player-card__description {
+  margin-top: 2.5rem;
+  font-weight: 600;
+}
+
+main .blackjack-wrapper .player .cards-wrapper {
+  background-color: #BFD7EA;
+  color: #0B3954;
+}
+
+main .blackjack-wrapper .player .cards-wrapper.cards-wrapper--dealer span {
+  font-size: 20rem;
+  display: block;
+  margin-top: -40px;
+}
+
+main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you span {
+  font-size: 10rem;
+  display: block;
+  margin-top: -40px;
+}
+
+main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you span:first-child, main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you span:nth-child(2) {
+  margin-top: 4px;
+}
+
+main form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main form.blackjack-form {
+  margin-bottom: 1rem;
+}
+
+main form.blackjack-form button {
+  margin: 0 0.5rem;
+}
+
+main form.reset-form {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main form.reset-form button {
+  margin: 0.5rem auto;
+}
+
+main form.reset-form p {
+  font-size: 0.8rem;
+}
+
+main form button {
+  padding: 0.5rem 0.7rem;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.overlay .overlay-content {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #BFD7EA;
+  text-align: center;
+}
+
+.overlay .overlay-content h3 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.overlay .overlay-content .overlay__winner {
+  font-size: 1.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.overlay .overlay-content .overlay__score-player {
+  margin-bottom: 0.5rem;
+}
+
+.overlay .overlay-content .overlay__score-dealer {
+  margin-bottom: 2rem;
+}
+
+.overlay .overlay-content button {
+  font-size: 1.2rem;
+  padding: 0.8rem 1.2rem;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,800;1,100;1,200;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+$c-light : #BFD7EA;
+$c-dark : #0B3954;
+$c-secondary: #EE6123;
+$c-third: #68B0AB;
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    display:flex;
+    min-height:100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-color: $c-light;
+    flex-direction: column;
+}
+
+main {
+    text-align: center;
+    width:100%;
+
+    @media (min-width:900px){
+        max-width: calc(3rem + 800px);
+        margin:4rem auto;
+    }
+
+    @media (max-width:900px){
+        margin:20px;
+        max-width: calc(100vw - 40px);
+    }
+
+    h1 {
+        font-size:2.6rem;
+        margin-bottom:3rem;
+    }
+
+    .blackjack-wrapper {
+        display:flex;
+        background-color: #0B3954;
+        color: $c-light;
+        padding: 3rem;
+        margin-bottom:2rem;
+
+        .player {
+            display:flex;
+            flex-direction: column;
+            width: calc(50% - 1rem);
+            
+            h2 {
+                margin-bottom: 1rem;
+            }
+    
+            .player-score__description {
+                margin-bottom:0.4rem;
+            }
+    
+            .player-score__output {
+                font-size:4rem;
+                margin-bottom:1rem;
+            }
+
+            .player-card__description {
+                margin-top:2.5rem;
+                font-weight: 600;
+            }
+    
+            .cards-wrapper {
+                background-color: $c-light;
+                color: $c-dark;
+    
+                &.cards-wrapper--dealer {
+                    
+                    span {
+                        font-size:20rem;
+                        display: block;
+                        margin-top:-40px;
+                    }
+                }
+
+                .cards-wrapper--you {
+                    display:grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+
+                    span {
+                        font-size:10rem;
+                        display: block;
+                        margin-top:-40px;
+
+                        &:first-child, &:nth-child(2){
+                            margin-top:4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    form {
+        display:flex;
+        justify-content: center;
+
+        &.blackjack-form {
+            margin-bottom: 1rem;
+            
+            button {
+                margin: 0 0.5rem;
+            }
+        }
+
+        &.reset-form {
+            flex-direction: column;
+
+            button {
+                margin: 0.5rem auto;
+            }
+
+            p {
+                font-size:0.8rem;
+            }
+        }
+
+        button {
+            padding:0.5rem 0.7rem;
+        }
+    }
+}
+
+.overlay {
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0,0,0,0.8);
+    display:flex;
+
+    .overlay-content {
+        margin:auto;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $c-light;
+        text-align:center;
+
+        h3 {
+            font-size:3rem;
+            margin-bottom:1rem;
+        }
+
+        .overlay__winner {
+            font-size:1.6rem;
+            margin-bottom:0.7rem;
+        }
+
+        .overlay__score-player {
+            margin-bottom:0.5rem;
+        }
+
+        .overlay__score-dealer {
+            margin-bottom:2rem;
+        }
+
+        button {
+            font-size:1.2rem;
+            padding:0.8rem 1.2rem;
+        }
+    }
+}
