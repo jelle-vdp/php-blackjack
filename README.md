@@ -124,6 +124,4 @@ All classes are ready, now you just need to write some minimal glue in the `inde
     - When you implement both nice to have features, a blackjack means an auto win of 10 chips, a blackjack of the dealer a loss of 5 chips for the player.
     
 # Tips
-- Be sure to check the pre made classes and the [example.php](code/example.php) file. This file shows how you can easily get some graphical presentation for the cards to spice up your game!
 - Try to avoid referring to `$_SESSION` inside your objects, because this breaks [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)). If you need it, pass it as an argument.
-- Stuck? Check the [FAQ](faq.md) for some of the most common problems.
