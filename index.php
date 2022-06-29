@@ -23,6 +23,7 @@ session_start();
 
 // whatIsHappening();
 
+
 function generateNewGame($keepTotalScore) {
     $deck = new Deck();
     $deck->shuffle();
@@ -42,82 +43,71 @@ function generateNewGame($keepTotalScore) {
     return $blackjackGame;
 }
 
-if(!isset($_SESSION["blackjack"])){
+if (!isset($_SESSION["compareCards"])){
+    $_SESSION["compareCards"] = false;
+};
+
+if (!isset($_SESSION["blackjack"])){
     $blackjackGame = generateNewGame(false);
-    if ($blackjackGame->getDealer()->getScore() === 21){
-        $blackjackGame->setWinner("Dealer");
-        $blackjackGame->getDealer()->wins();
-        $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
-    } elseif ($blackjackGame->getPlayer()->getScore() === 21) {
-        $blackjackGame->setWinner("Player");
-        $blackjackGame->getPlayer()->wins();
-        $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
-    } elseif ($blackjackGame->getPlayer()->getScore() > 21){
-        $blackjackGame->setWinner("Dealer");
-        $blackjackGame->getDealer()->wins();
-        $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
-    } elseif ($blackjackGame->getDealer()->getScore() > 21){
-        $blackjackGame->setWinner("Player");
-        $blackjackGame->getPlayer()->wins();
-        $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
-    }
 } else {
     $blackjackGame = $_SESSION["blackjack"];
-    if ($blackjackGame->getDealer()->getScore() === 21){
-        $blackjackGame->setWinner("Dealer");
-        $blackjackGame->getDealer()->wins();
-        $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
-    } elseif ($blackjackGame->getPlayer()->getScore() === 21) {
-        $blackjackGame->setWinner("Player");
-        $blackjackGame->getPlayer()->wins();
-        $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
-    } elseif ($blackjackGame->getPlayer()->getScore() > 21){
-        $blackjackGame->setWinner("Dealer");
-        $blackjackGame->getDealer()->wins();
-        $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
-    } elseif ($blackjackGame->getDealer()->getScore() > 21){
-        $blackjackGame->setWinner("Player");
-        $blackjackGame->getPlayer()->wins();
-        $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
+} 
+
+if ($blackjackGame->getPlayer()->getScore() > 21){
+    $blackjackGame->getPlayer()->setLost(true);
+} else if ($blackjackGame->getDealer()->getScore() === 21){
+    $blackjackGame->getPlayer()->setLost(true);
+} else if ($_SESSION["compareCards"] === true){
+    if($blackjackGame->getDealer()->getScore() >= $blackjackGame->getPlayer()->getScore()){
+        $blackjackGame->getPlayer()->setLost(true);
+    } else {
+        $blackjackGame->getDealer()->setLost(true);
     }
+    $_SESSION["compareCards"] = false;
 }
+
+if ($blackjackGame->getDealer()->getScore() > 21){
+    $blackjackGame->getDealer()->setLost(true);
+} else if ($blackjackGame->getPlayer()->getScore() === 21){
+    $blackjackGame->getDealer()->setLost(true);
+} else if ($_SESSION["compareCards"] === true){
+    if($blackjackGame->getDealer()->getScore() >= $blackjackGame->getPlayer()->getScore()){
+        $blackjackGame->getPlayer()->setLost(true);
+    } else {
+        $blackjackGame->getDealer()->setLost(true);
+    }
+    $_SESSION["compareCards"] = false;
+}
+
+if ($blackjackGame->getPlayer()->getLost() === true){
+    $blackjackGame->setWinner("Dealer");
+    $blackjackGame->getDealer()->wins();
+    $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
+}
+
+if ($blackjackGame->getDealer()->getLost() === true){
+    $blackjackGame->setWinner("Player");
+    $blackjackGame->getPlayer()->wins();
+    $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
+}
+$_SESSION["dontDoubleCheck"] = false;
+
+
 
 
 if (isset($_POST["hit"])) {
     $blackjackGame->getPlayer()->hit();
-
-    if ($blackjackGame->getPlayer()->getLost() === true || $blackjackGame->getPlayer()->getScore() > 21 || $blackjackGame->getDealer()->getScore() === 21){
-        $blackjackGame->setWinner("Dealer");
-        $blackjackGame->getDealer()->wins();
-        $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
-    }
-    
-    if ($blackjackGame->getDealer()->getLost() === true || $blackjackGame->getDealer()->getScore() > 21 || $blackjackGame->getPlayer()->getScore() === 21){
-        $blackjackGame->setWinner("Player");
-        $blackjackGame->getPlayer()->wins();
-        $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
-    }
     header('Location:' . $_SERVER['PHP_SELF']);
 }
 
 if (isset($_POST["stand"])) {
     $blackjackGame->getDealer()->hitIfMin15();
-    if ($blackjackGame->getDealer()->getScore() === 21 || $blackjackGame->getDealer()->getScore() >= $blackjackGame->getPlayer()->getScore()) {
-        $blackjackGame->setWinner("Dealer");
-        $blackjackGame->getDealer()->wins();
-        $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
-    } else {
-        $blackjackGame->setWinner("Player");
-        $blackjackGame->getPlayer()->wins();
-        $_SESSION["blackjackWinsPlayer"] = $blackjackGame->getPlayer()->getWins();
-    }
+    $_SESSION["compareCards"] = true;
     header('Location:' . $_SERVER['PHP_SELF']);
 }
 
 if (isset($_POST["surrender"])) {
-    $blackjackGame->setWinner("Dealer");
-    $blackjackGame->getDealer()->wins();
-    $_SESSION["blackjackWinsDealer"] = $blackjackGame->getDealer()->getWins();
+    $blackjackGame->getPlayer()->setLost(true);
     header('Location:' . $_SERVER['PHP_SELF']);
 }
 

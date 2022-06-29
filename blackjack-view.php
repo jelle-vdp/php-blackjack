@@ -26,10 +26,14 @@
         <section class="blackjack-wrapper">
             <div class="player player--dealer">
                 <h2>Dealer</h2>
-                <!-- <p class="player-score__description">Current wins:</p>
+                <p class="player-score__description">Current wins:</p>
                 <p class="player-score__output">
-                    <?= $blackjackGame->getDealer()->getWins(); ?>
-                </p> -->
+                    <?php if ($blackjackGame->getDealer()->getWins() % 2 === 0){
+                        echo $blackjackGame->getDealer()->getWins() / 2;
+                    } else {
+                        echo "?";
+                    }; ?>
+                </p>
                 <figure class="cards-wrapper cards-wrapper--dealer">
                     <figcaption class="player-card__description">Dealer's first card:</figcaption>
                     <?= $blackjackGame->getDealer()->getCards()[0]->getUnicodeCharacter(true); ?>
@@ -37,10 +41,14 @@
             </div>
             <div class="player player--you">
                 <h2>You</h2>
-                <!-- <p class="player-score__description">Current wins:</p>
+                <p class="player-score__description">Current wins:</p>
                 <p class="player-score__output">
-                    <?= $blackjackGame->getPlayer()->getWins(); ?>
-                </p> -->
+                    <?php if ($blackjackGame->getPlayer()->getWins() % 2 === 0){
+                        echo $blackjackGame->getPlayer()->getWins() / 2;
+                    } else {
+                        echo "?";
+                    }; ?>
+                </p>
                 <div class="cards-wrapper">
                     <p class="player-card__description">Your cards:</p>
                     <div class="cards-wrapper--you">
@@ -63,10 +71,10 @@
             <button type="submit" name="surrender">Surrender</button>
         </form>
         
-        <!-- <form class="reset-form" method="post">
+        <form class="reset-form" method="post">
             <button type="submit" name="reset">Reset the whole game</button>
             <p>(Including the times you or the dealer have won)</p>
-        </form> -->
+        </form>
     </main>
 </body>
 </html>

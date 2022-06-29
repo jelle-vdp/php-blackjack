@@ -12,7 +12,7 @@ class Player {
         $this->cards = $deck->getCards();
         $this->cardCount = 2;
         $this->score = $deck->getCards()[0]->getValue() + $deck->getCards()[1]->getValue();
-        $this->lost = false;
+        $this->lost = $this->score > 21;
         $this->wins = 0;
     }
 
@@ -30,7 +30,6 @@ class Player {
         for($i = 0; $i < $this->getCardCount(); $i++){
             $this->score += $this->getCards()[$i]->getValue();
         }
-        $this->hasLost();
     }
 
     public function getCardCount(){
@@ -41,18 +40,20 @@ class Player {
         return $this->score;
     }
 
+    public function setScore($score){
+        $this->score = $score;
+    }
+
     public function getCards(){
         return $this->cards;
     }
 
-    public function hasLost(){
-        if($this->score > 21){
-            $this->lost = true;
-        }
-    }
-
     public function getLost(){
         return $this->lost;
+    }
+
+    public function setLost($lost){
+        $this->lost = $lost;
     }
 
     public function wins(){
