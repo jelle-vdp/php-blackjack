@@ -55,6 +55,7 @@ main .blackjack-wrapper {
   color: #BFD7EA;
   padding: 3rem;
   margin-bottom: 2rem;
+  gap: 2rem;
 }
 
 main .blackjack-wrapper .player {
@@ -82,19 +83,13 @@ main .blackjack-wrapper .player .player-score__output {
 }
 
 main .blackjack-wrapper .player .player-card__description {
-  margin-top: 2.5rem;
   font-weight: 600;
 }
 
 main .blackjack-wrapper .player .cards-wrapper {
   background-color: #BFD7EA;
   color: #0B3954;
-}
-
-main .blackjack-wrapper .player .cards-wrapper.cards-wrapper--dealer span {
-  font-size: 20rem;
-  display: block;
-  margin-top: -40px;
+  padding: 2rem;
 }
 
 main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you {
@@ -105,14 +100,9 @@ main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you {
   gap: 1rem;
 }
 
-main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you span {
+main .blackjack-wrapper .player .cards-wrapper span {
   font-size: 10rem;
   display: block;
-  margin-top: -40px;
-}
-
-main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you span:first-child, main .blackjack-wrapper .player .cards-wrapper .cards-wrapper--you span:nth-child(2) {
-  margin-top: 4px;
 }
 
 main form {

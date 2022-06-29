@@ -48,6 +48,7 @@ main {
         color: $c-light;
         padding: 3rem;
         margin-bottom:2rem;
+        gap:2rem;
 
         .player {
             display:flex;
@@ -68,41 +69,30 @@ main {
             }
 
             .player-card__description {
-                margin-top:2.5rem;
                 font-weight: 600;
             }
     
             .cards-wrapper {
                 background-color: $c-light;
                 color: $c-dark;
+                padding: 2rem;
     
-                &.cards-wrapper--dealer {
-                    
-                    span {
-                        font-size:20rem;
-                        display: block;
-                        margin-top:-40px;
-                    }
-                }
 
                 .cards-wrapper--you {
                     display:grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 1rem;
+                
+                }
 
-                    span {
-                        font-size:10rem;
-                        display: block;
-                        margin-top:-40px;
-
-                        &:first-child, &:nth-child(2){
-                            margin-top:4px;
-                        }
-                    }
+                span {
+                    font-size:10rem;
+                    display: block;
                 }
             }
         }
     }
+    
 
     form {
         display:flex;

@@ -37,6 +37,8 @@
                 <figure class="cards-wrapper cards-wrapper--dealer">
                     <figcaption class="player-card__description">Dealer's first card:</figcaption>
                     <?= $blackjackGame->getDealer()->getCards()[0]->getUnicodeCharacter(true); ?>
+                    <p>Dealer's score:</p>
+                    <p>???</p>
                 </figure>
             </div>
             <div class="player player--you">
